@@ -147,11 +147,13 @@ jobs:
               console.log("达到最大重试次数");
               return;
             }
+             
+            const workflowFile = "Host2Play_Renew.yml"; 
 
             await github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: context.workflow,  // ✅ 更稳
+              workflow_id: workflowFile,  // ✅ 更稳
               ref: context.ref.replace('refs/heads/', ''),
               inputs: {
                 retry: String(retry + 1)
